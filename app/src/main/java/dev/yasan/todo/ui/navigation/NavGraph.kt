@@ -14,6 +14,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.yasan.todo.R
 import dev.yasan.todo.ui.composable.screen.home.HomeScreen
 import dev.yasan.todo.ui.composable.screen.home.HomeViewModel
+import dev.yasan.todo.ui.theme.themePrimaryDark
 
 /**
  * The main navigation graph for DoTo.
@@ -31,7 +32,8 @@ fun NavGraph(
 
     val navController = rememberAnimatedNavController()
     val systemUiController = rememberSystemUiController().apply {
-        setSystemBarsColor(color = colorResource(id = R.color.layer_background))
+        setStatusBarColor(color = themePrimaryDark)
+        setNavigationBarColor(color = colorResource(id = R.color.layer_background))
     }
 
     AnimatedNavHost(

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DoTo</string>
     <string name="created_on">Created on %s</string>
+    <string name="add_task">Add Task</string>
 </resources>

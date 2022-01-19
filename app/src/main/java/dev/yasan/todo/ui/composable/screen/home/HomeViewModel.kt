@@ -7,6 +7,9 @@ import dev.yasan.todo.data.db.entity.Task
 import dev.yasan.todo.data.repo.TaskRepository
 import javax.inject.Inject
 
+/**
+ * [ViewModel] for [HomeScreen].
+ */
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val taskRepository: TaskRepository) : ViewModel() {
 
