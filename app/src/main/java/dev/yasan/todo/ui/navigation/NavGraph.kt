@@ -85,7 +85,11 @@ fun NavGraph(
 
                 val taskEditViewModel: TaskEditViewModel = hiltViewModel(it)
 
-                TaskEditScreen(taskEditViewModel = taskEditViewModel)
+                TaskEditScreen(
+                    taskEditViewModel = taskEditViewModel,
+                    navController = navController,
+                    taskId = taskId
+                )
 
             }
 

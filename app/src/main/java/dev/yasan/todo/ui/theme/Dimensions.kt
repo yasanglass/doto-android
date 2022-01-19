@@ -5,6 +5,8 @@ import androidx.compose.ui.unit.dp
 
 private val dimenGrid = 8.dp
 val dimenDivider = 1.dp
+val dimenElevation = 0.dp
+val dimenElevationPressed = 0.dp
 
 /**
  * @return The base grid size multiplied by [multiplier].

@@ -36,7 +36,11 @@ fun AddTaskButton(onClick: () -> Unit = {}) {
                 backgroundColor = themeAccent,
                 contentColor = onThemeAccent
             ),
-            border = BorderStroke(width = dimenDivider, color = colorResource(id = R.color.divider))
+            border = BorderStroke(width = dimenDivider, color = colorResource(id = R.color.divider)),
+            elevation = ButtonDefaults.elevation(
+                defaultElevation = dimenElevation,
+                pressedElevation = dimenElevationPressed
+            )
         ) {
             Text(
                 text = stringResource(R.string.add_task).uppercase(),

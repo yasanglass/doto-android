@@ -1,4 +1,4 @@
-package dev.yasan.todo.ui.composable.screen.home.modules
+package dev.yasan.todo.ui.composable.sheet.task.view
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -17,16 +17,15 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import dev.yasan.todo.R
 import dev.yasan.todo.data.db.entity.Task
-import dev.yasan.todo.ui.preview.TaskListPreviewProvider
 import dev.yasan.todo.ui.preview.TaskPreviewProvider
 import dev.yasan.todo.ui.theme.dimenDivider
 import dev.yasan.todo.ui.theme.grid
 import dev.yasan.todo.ui.theme.rubikFamily
 
-@Preview(name = "Task", group = "Task (Light)", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Task", group = "Task (Dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Task View", group = "Task View (Light)", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Task View", group = "Task View (Dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun TaskItem(
+fun TaskViewScreen(
     @PreviewParameter(TaskPreviewProvider::class) task: Task,
     fontFamily: FontFamily = rubikFamily
 ) {
@@ -45,6 +44,15 @@ fun TaskItem(
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.requiredHeight(grid()))
+            task.description?.let { description ->
+                Text(
+                    text = description, color = colorResource(id = R.color.text_desc),
+                    fontFamily = fontFamily,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal
+                )
+                Spacer(modifier = Modifier.requiredHeight(grid()))
+            }
             Text(
                 text = stringResource(id = R.string.created_on, task.creationDatString),
                 color = colorResource(id = R.color.text_desc),
@@ -57,15 +65,4 @@ fun TaskItem(
         Divider(color = colorResource(id = R.color.divider), thickness = dimenDivider)
     }
 
-}
-
-@Preview(name = "Task List", group = "Task List (Light)", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Task List", group = "Task List (Dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun TaskItemListPreview(@PreviewParameter(TaskListPreviewProvider::class) taskList: List<Task>) {
-    Column {
-        taskList.forEach { task ->
-            TaskItem(task = task)
-        }
-    }
 }
