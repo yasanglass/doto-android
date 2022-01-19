@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import dagger.hilt.android.AndroidEntryPoint
 import dev.yasan.todo.ui.composable.DoToApp
@@ -16,6 +18,8 @@ import dev.yasan.todo.ui.composable.DoToApp
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @ExperimentalMaterialApi
+    @ExperimentalComposeUiApi
     @ExperimentalMaterialNavigationApi
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {

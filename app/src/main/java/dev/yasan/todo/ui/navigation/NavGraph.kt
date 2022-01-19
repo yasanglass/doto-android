@@ -3,7 +3,9 @@ package dev.yasan.todo.ui.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
@@ -30,6 +32,8 @@ import dev.yasan.todo.ui.theme.themePrimaryDark
  *
  * @see NavRoutes
  */
+@ExperimentalComposeUiApi
+@ExperimentalMaterialApi
 @ExperimentalMaterialNavigationApi
 @ExperimentalAnimationApi
 @Composable

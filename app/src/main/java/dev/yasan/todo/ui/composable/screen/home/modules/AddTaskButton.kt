@@ -23,7 +23,7 @@ import dev.yasan.todo.ui.theme.*
 @Composable
 fun AddTaskButton(onClick: () -> Unit = {}) {
 
-    Column(modifier = Modifier.background(color = colorResource(id = R.color.layer_foreground))) {
+    Column(modifier = Modifier.background(color = colorResource(id = R.color.layer_midground))) {
 
         Button(
             onClick = {

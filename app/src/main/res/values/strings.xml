@@ -5,4 +5,6 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="no_tasks_available">No tasks available</string>
 </resources>
