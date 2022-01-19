@@ -14,7 +14,6 @@ abstract class DoToDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_NAME = "doto"
-        const val DATABASE_FILE_NAME = "$DATABASE_NAME.db"
     }
 
     abstract fun taskDao(): TaskDao

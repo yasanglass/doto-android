@@ -41,8 +41,7 @@ class ApplicationModule {
         app,
         DoToDatabase::class.java,
         DoToDatabase.DATABASE_NAME
-    ).createFromAsset(DoToDatabase.DATABASE_FILE_NAME)
-        .fallbackToDestructiveMigration()
+    ).fallbackToDestructiveMigration()
         .addCallback(callback)
         .build()
 

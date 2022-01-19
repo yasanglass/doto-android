@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.colorResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -12,6 +13,7 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.yasan.todo.R
 import dev.yasan.todo.ui.composable.screen.home.HomeScreen
+import dev.yasan.todo.ui.composable.screen.home.HomeViewModel
 
 /**
  * The main navigation graph for DoTo.
@@ -51,7 +53,9 @@ fun NavGraph(
 
         composable(route = NavRoutes.routeHome()) {
 
-            HomeScreen()
+            val homeViewModel: HomeViewModel = hiltViewModel(it)
+
+            HomeScreen(homeViewModel = homeViewModel)
 
         }
 
