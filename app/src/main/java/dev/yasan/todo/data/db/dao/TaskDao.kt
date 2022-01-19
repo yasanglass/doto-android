@@ -13,7 +13,7 @@ import dev.yasan.todo.data.db.entity.Task
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM todo_tasks ORDER BY creation_date")
+    @Query("SELECT * FROM todo_tasks ORDER BY creation_date DESC")
     fun getAll(): LiveData<List<Task>>
 
     @Query("SELECT * FROM todo_tasks WHERE id=:taskId")

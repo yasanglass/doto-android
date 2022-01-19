@@ -8,8 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -21,8 +19,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.yasan.todo.R
 import dev.yasan.todo.ui.composable.screen.home.HomeScreen
 import dev.yasan.todo.ui.composable.screen.home.HomeViewModel
-import dev.yasan.todo.ui.composable.sheet.task.edit.TaskEditScreen
-import dev.yasan.todo.ui.composable.sheet.task.edit.TaskEditViewModel
+import dev.yasan.todo.ui.composable.sheet.task.edit.TaskCreationScreen
+import dev.yasan.todo.ui.composable.sheet.task.edit.TaskCreationViewModel
 import dev.yasan.todo.ui.theme.themePrimaryDark
 
 /**
@@ -76,23 +74,13 @@ fun NavGraph(
 
             }
 
-            bottomSheet(
-                route = NavRoutes.routeTaskBase(),
-                arguments = listOf(
-                    navArgument(NavRoutes.PARAM_TASK_ID) {
-                        type = NavType.LongType
-                    }
-                )
-            ) {
+            bottomSheet(route = NavRoutes.routeTaskCreate()) {
 
-                val taskId: Long? = it.arguments?.getLong(NavRoutes.PARAM_TASK_ID)
+                val taskCreationViewModel: TaskCreationViewModel = hiltViewModel(it)
 
-                val taskEditViewModel: TaskEditViewModel = hiltViewModel(it)
-
-                TaskEditScreen(
-                    taskEditViewModel = taskEditViewModel,
+                TaskCreationScreen(
+                    taskCreationViewModel = taskCreationViewModel,
                     navController = navController,
-                    taskId = taskId
                 )
 
             }

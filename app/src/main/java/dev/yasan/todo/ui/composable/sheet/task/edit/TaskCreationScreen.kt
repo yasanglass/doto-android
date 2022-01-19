@@ -37,10 +37,9 @@ import dev.yasan.todo.ui.theme.rubikFamily
 
 @ExperimentalComposeUiApi
 @Composable
-fun TaskEditScreen(
-    taskEditViewModel: TaskEditViewModel,
+fun TaskCreationScreen(
+    taskCreationViewModel: TaskCreationViewModel,
     navController: NavController,
-    taskId: Long? = null,
     fontFamily: FontFamily = rubikFamily
 ) {
 
@@ -153,7 +152,7 @@ fun TaskEditScreen(
                 val title = titleState.value.text
                 val description = descriptionState.value.text
                 if (title.isNotBlank()) {
-                    taskEditViewModel.createFolder(title = title, description = description)
+                    taskCreationViewModel.createTask(title = title, description = description)
                     navController.navigateUp()
                 } else {
                     Toast.makeText(context, "Please enter task title first", Toast.LENGTH_SHORT)

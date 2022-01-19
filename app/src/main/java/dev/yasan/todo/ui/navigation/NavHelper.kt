@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 object NavHelper {
 
     fun createTask(navController: NavController) {
-        navController.navigate(NavRoutes.routeTaskEdit())
+        navController.navigate(NavRoutes.routeTaskCreate())
     }
 
 }

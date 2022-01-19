@@ -1,7 +1,7 @@
 package dev.yasan.todo.ui.navigation
 
 import dev.yasan.todo.ui.composable.screen.home.HomeScreen
-import dev.yasan.todo.ui.composable.sheet.task.edit.TaskEditScreen
+import dev.yasan.todo.ui.composable.sheet.task.edit.TaskCreationScreen
 
 /**
  * Handles all the navigation routes used on [NavGraph].
@@ -21,15 +21,13 @@ object NavRoutes {
 
     const val PARAM_TASK_ID = "task.id"
 
-    // Edit Task
+    // Create Task
 
-    private const val ROUTE_TASK_EDIT = "task.edit"
+    private const val ROUTE_TASK_CREATE = "task.create"
 
     /**
-     * @return Navigation route for [TaskEditScreen].
+     * @return Navigation route for [TaskCreationScreen].
      */
-    fun routeTaskEdit(taskId: Long = 0) = "$ROUTE_TASK_EDIT/$taskId"
-
-    fun routeTaskBase(taskId: Long = 0) = "$ROUTE_TASK_EDIT/{$PARAM_TASK_ID}"
+    fun routeTaskCreate() = ROUTE_TASK_CREATE
 
 }

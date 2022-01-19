@@ -10,16 +10,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TaskEditViewModel @Inject constructor(
+class TaskCreationViewModel @Inject constructor(
     private val dispatchers: DispatcherProvider,
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
-    fun loadData(taskId: Long?) {
-
-    }
-
-    fun createFolder(title: String, description: String) {
+    fun createTask(title: String, description: String) {
         viewModelScope.launch(dispatchers.io) {
             val task = Task(
                 title = title,
