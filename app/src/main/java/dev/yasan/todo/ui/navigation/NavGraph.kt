@@ -1,7 +1,7 @@
 package dev.yasan.todo.ui.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.fadeIn
+import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -48,10 +48,10 @@ fun NavGraph(
         navController = navController,
         startDestination = startDestination,
         enterTransition = { _, _ ->
-            fadeIn()
+            expandIn()
         },
         popEnterTransition = { _, _ ->
-            fadeIn()
+            expandIn()
         },
         exitTransition = { _, _ ->
             fadeOut()
