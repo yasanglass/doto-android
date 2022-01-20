@@ -1,6 +1,7 @@
 package dev.yasan.todo.ui.composable.sheet.task.edit
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -53,114 +54,133 @@ fun TaskCreationScreen(
         onDispose { }
     }
 
-    Column(modifier = Modifier.padding(grid(2))) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.layer_midground))
+    ) {
 
-        TextField(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            value = titleState.value,
-            onValueChange = {
-                titleState.value = it
-            },
-            maxLines = 1,
-            singleLine = true,
-            label = {
-                Text(
-                    text = stringResource(id = R.string.title),
-                    color = colorResource(id = R.color.text_desc),
+                .background(color = colorResource(id = R.color.layer_foreground))
+                .padding(grid(2))
+        ) {
+
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = titleState.value,
+                onValueChange = {
+                    titleState.value = it
+                },
+                maxLines = 1,
+                singleLine = true,
+                label = {
+                    Text(
+                        text = stringResource(id = R.string.title),
+                        color = colorResource(id = R.color.text_desc),
+                        fontWeight = FontWeight.Normal,
+                        fontStyle = FontStyle.Normal,
+                        fontFamily = fontFamily
+                    )
+                },
+                textStyle = TextStyle(
+                    color = colorResource(id = R.color.text_title),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = rubikFamily
+                ),
+                leadingIcon = {
+                    Icon(
+                        imageVector = DoToIcons.Title,
+                        contentDescription = stringResource(id = R.string.title),
+                        tint = colorResource(id = R.color.text_title)
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done,
+                    autoCorrect = true,
+                    keyboardType = KeyboardType.Text
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        keyboardController?.hide()
+                    }
+                )
+            )
+
+            Spacer(modifier = Modifier.requiredHeight(grid(2)))
+
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                value = descriptionState.value,
+                onValueChange = {
+                    descriptionState.value = it
+                },
+                label = {
+                    Text(
+                        text = stringResource(id = R.string.description),
+                        color = colorResource(id = R.color.text_desc),
+                        fontWeight = FontWeight.Normal,
+                        fontStyle = FontStyle.Normal,
+                        fontFamily = fontFamily
+                    )
+                },
+                maxLines = 5,
+                textStyle = TextStyle(
+                    color = colorResource(id = R.color.text_title),
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
-                    fontStyle = FontStyle.Normal,
-                    fontFamily = fontFamily
-                )
-            },
-            textStyle = TextStyle(
-                color = colorResource(id = R.color.text_title),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = rubikFamily
-            ),
-            leadingIcon = {
-                Icon(
-                    imageVector = DoToIcons.Title,
-                    contentDescription = stringResource(id = R.string.title),
-                    tint = colorResource(id = R.color.text_title)
-                )
-            },
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done,
-                autoCorrect = true,
-                keyboardType = KeyboardType.Text
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = {
+                    fontFamily = rubikFamily
+                ),
+                leadingIcon = {
+                    Icon(
+                        imageVector = DoToIcons.Description,
+                        contentDescription = stringResource(id = R.string.title),
+                        tint = colorResource(id = R.color.text_title)
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done,
+                    autoCorrect = true,
+                    keyboardType = KeyboardType.Text
+                ),
+                keyboardActions = KeyboardActions(onDone = {
                     keyboardController?.hide()
+                })
+            )
+
+            Spacer(modifier = Modifier.requiredHeight(grid(2)))
+
+            TaskButtons(
+                onCancel = {
+                    navController.navigateUp()
+                },
+                onDone = {
+                    val title = titleState.value.text
+                    val description = descriptionState.value.text
+                    if (title.isNotBlank()) {
+                        taskCreationViewModel.createTask(
+                            title = title,
+                            description = description
+                        )
+                        navController.navigateUp()
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Please enter task title first",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        // TODO replace with a snackBar
+                    }
                 }
             )
-        )
 
-        Spacer(modifier = Modifier.requiredHeight(grid(2)))
-
-        TextField(
-            modifier = Modifier
-                .fillMaxWidth(),
-            value = descriptionState.value,
-            onValueChange = {
-                descriptionState.value = it
-            },
-            label = {
-                Text(
-                    text = stringResource(id = R.string.description),
-                    color = colorResource(id = R.color.text_desc),
-                    fontWeight = FontWeight.Normal,
-                    fontStyle = FontStyle.Normal,
-                    fontFamily = fontFamily
-                )
-            },
-            maxLines = 5,
-            textStyle = TextStyle(
-                color = colorResource(id = R.color.text_title),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = rubikFamily
-            ),
-            leadingIcon = {
-                Icon(
-                    imageVector = DoToIcons.Description,
-                    contentDescription = stringResource(id = R.string.title),
-                    tint = colorResource(id = R.color.text_title)
-                )
-            },
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done,
-                autoCorrect = true,
-                keyboardType = KeyboardType.Text
-            ),
-            keyboardActions = KeyboardActions(onDone = {
-                keyboardController?.hide()
-            })
-        )
+        }
 
         DoToDivider()
-
-        Spacer(modifier = Modifier.requiredHeight(grid(2)))
-
-        TaskButtons(
-            onCancel = {
-                navController.navigateUp()
-            },
-            onDone = {
-                val title = titleState.value.text
-                val description = descriptionState.value.text
-                if (title.isNotBlank()) {
-                    taskCreationViewModel.createTask(title = title, description = description)
-                    navController.navigateUp()
-                } else {
-                    Toast.makeText(context, "Please enter task title first", Toast.LENGTH_SHORT)
-                        .show()
-                    // TODO replace with a snackBar
-                }
-            }
-        )
 
     }
 

@@ -82,7 +82,6 @@ dependencies {
     // Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-navigation-material:$accompanist_version"
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'

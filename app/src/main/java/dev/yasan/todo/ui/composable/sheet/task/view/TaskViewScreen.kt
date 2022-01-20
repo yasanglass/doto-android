@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import dev.yasan.todo.R
 import dev.yasan.todo.data.db.entity.Task
+import dev.yasan.todo.ui.composable.common.DoToDivider
 import dev.yasan.todo.ui.preview.TaskPreviewProvider
 import dev.yasan.todo.ui.theme.dimenDivider
 import dev.yasan.todo.ui.theme.grid
@@ -37,7 +38,12 @@ fun TaskViewScreen(
 
     val taskResource = taskViewViewModel.task.observeAsState()
 
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.layer_midground)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         when (taskResource.value) {
             is Resource.Initial -> {
                 taskViewViewModel.loadTask(taskId = taskId)
@@ -61,8 +67,9 @@ fun TaskViewScreen(
                 val task = taskResource.value!!.data!!
                 Column(
                     modifier = Modifier
-                        .padding(grid(2))
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .background(color = colorResource(id = R.color.layer_foreground))
+                        .padding(grid(2)),
                     horizontalAlignment = Alignment.Start,
                 ) {
                     Text(
@@ -96,6 +103,7 @@ fun TaskViewScreen(
                 }
             }
         }
+        DoToDivider()
     }
 
 }
