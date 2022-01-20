@@ -2,6 +2,7 @@ package dev.yasan.todo.ui.composable.screen.home.modules
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -32,13 +33,17 @@ import dev.yasan.todo.ui.theme.rubikFamily
 @Composable
 fun TaskItem(
     @PreviewParameter(TaskPreviewProvider::class) task: Task,
-    fontFamily: FontFamily = rubikFamily
+    fontFamily: FontFamily = rubikFamily,
+    onClick: (Task) -> Unit = {}
 ) {
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.layer_foreground))
+            .clickable {
+                onClick(task)
+            }
     ) {
         Row(
             modifier = Modifier.padding(horizontal = grid(2), vertical = grid(1.5f)),

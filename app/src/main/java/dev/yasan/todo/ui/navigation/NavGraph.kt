@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -21,6 +23,8 @@ import dev.yasan.todo.ui.composable.screen.home.HomeScreen
 import dev.yasan.todo.ui.composable.screen.home.HomeViewModel
 import dev.yasan.todo.ui.composable.sheet.task.edit.TaskCreationScreen
 import dev.yasan.todo.ui.composable.sheet.task.edit.TaskCreationViewModel
+import dev.yasan.todo.ui.composable.sheet.task.view.TaskViewScreen
+import dev.yasan.todo.ui.composable.sheet.task.view.TaskViewViewModel
 import dev.yasan.todo.ui.theme.themePrimaryDark
 
 /**
@@ -82,6 +86,23 @@ fun NavGraph(
                     taskCreationViewModel = taskCreationViewModel,
                     navController = navController,
                 )
+
+            }
+
+            bottomSheet(
+                route = NavRoutes.routeTaskViewBase,
+                arguments = listOf(
+                    navArgument(NavRoutes.PARAM_TASK_ID) {
+                        type = NavType.LongType
+                    },
+                )
+            ) {
+
+                val taskId = it.arguments?.getLong(NavRoutes.PARAM_TASK_ID) ?: 0L
+
+                val taskViewViewModel: TaskViewViewModel = hiltViewModel(it)
+
+                TaskViewScreen(taskViewViewModel = taskViewViewModel, taskId = taskId)
 
             }
 

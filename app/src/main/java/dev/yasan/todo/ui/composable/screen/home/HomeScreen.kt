@@ -29,6 +29,9 @@ fun HomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
 
         HomeContent(
             tasks = tasks,
+            onOpenTask = { task ->
+                NavHelper.openTask(navController = navController, task = task)
+            },
             onDeleteTask = { task ->
                 homeViewModel.deleteTask(task = task)
             }

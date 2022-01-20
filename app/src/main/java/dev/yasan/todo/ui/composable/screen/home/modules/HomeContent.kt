@@ -30,7 +30,11 @@ import dev.yasan.todo.ui.theme.rubikFamily
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @Composable
-fun ColumnScope.HomeContent(tasks: State<List<Task>?>, onDeleteTask: (Task) -> Unit) {
+fun ColumnScope.HomeContent(
+    tasks: State<List<Task>?>,
+    onOpenTask: (Task) -> Unit,
+    onDeleteTask: (Task) -> Unit
+) {
 
     LazyColumn(
         modifier = Modifier.weight(1f),
@@ -98,7 +102,9 @@ fun ColumnScope.HomeContent(tasks: State<List<Task>?>, onDeleteTask: (Task) -> U
                     }
                 },
             ) {
-                TaskItem(task = task)
+                TaskItem(task = task) {
+                    onOpenTask(task)
+                }
             }
 
         }
