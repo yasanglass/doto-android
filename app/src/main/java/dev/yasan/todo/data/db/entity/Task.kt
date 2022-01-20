@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.text.SimpleDateFormat
+import java.util.*
 
 @Entity(tableName = "todo_tasks")
 data class Task(
@@ -17,9 +18,11 @@ data class Task(
     var id: Long = 0
 
     val creationDatString: String
-        get() { // TODO improve string style
-            val df = SimpleDateFormat.getDateTimeInstance()
-            return df.format(creationDateMillis)
+        get() {
+            val formatter = SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault())
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.timeInMillis = creationDateMillis
+            return formatter.format(calendar.time)
         }
 
 }
